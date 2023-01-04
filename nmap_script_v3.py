@@ -32,7 +32,7 @@ nm = nmap.PortScanner()
 # Perform: nmap -oX - -n -sn 192.168.0.1/24
 # *** NOTE: -sP has changed to -sn for newer versions of nmap! ***
 # Change this to your network IP range
-nm.scan(hosts='10.41.30.1/24', arguments='-n -sn')
+nm.scan(hosts='192.168.0.1/24', arguments='-n -sn')
 # Retrieve results for all hosts found
 nm.all_hosts()
 # For every host result, write their mac address and ip to the $mac_list file
@@ -58,36 +58,6 @@ approved_macs = [
     "00:24:9B:77:A5:27",
     "04:D5:90:05:D7:B3",
     "C8:D3:FF:A2:FA:44",
-    "00:15:5D:1E:5D:06",
-    "58:20:B1:7C:CA:26",
-    "0C:37:96:3F:90:25",
-    "00:15:5D:1E:5D:07",
-    "B4:B6:86:CB:F2:41",
-    "FC:45:96:69:05:7C",
-    "0C:37:96:21:BE:14",
-    "00:15:5D:1E:5D:08",
-    "00:11:32:98:0A:F5",
-    "08:F1:EA:EF:09:6E",
-    "00:15:5D:1E:5D:01",
-    "00:15:5D:1E:5D:0A",
-    "00:15:5D:1E:5D:0F",
-    "84:25:3F:30:8A:3F",
-    "00:04:A5:3F:2D:10",
-    "8C:85:C1:04:3D:C0",
-    "E0:63:DA:A0:13:E2",
-    "74:AC:B9:60:1C:63",
-    "EC:B1:D7:0A:19:40",
-    "58:38:79:60:FD:66",
-    "2C:27:D7:12:D5:A8",
-    "2C:27:D7:12:D5:A4",
-    "2C:27:D7:12:D5:4C",
-    "A0:D3:C1:EB:53:DE",
-    "30:8D:99:AF:76:6E",
-    "D4:C9:EF:20:FE:C0",
-    "08:F1:EA:EF:09:6C",
-    "94:57:A5:33:7E:40",
-    "F0:9F:C2:79:26:9F",
-    "70:BC:10:82:53:CF",
     ]
 
 # Create empty list of new devices found on network
@@ -112,9 +82,9 @@ if len(new_devices) != 0:
     # Create email notification of the warning
     try:
         # subject of email
-        subject = "WARNUNG, neues Geraet im Netzwerk!"
+        subject = "WARNING, new device on LAN!"
         # content of email
-        content = "Neues unbekanntes Geraet im Netzwerk:\n"
+        content = "New unknown device(s) on the LAN:\n"
         for device in new_devices:
             content += f"IP address: {device['ipv4']}\nMAC address: {device['mac']}\n\n"
         # shell process of sending email with mutt
